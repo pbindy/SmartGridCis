@@ -8,40 +8,49 @@ using System.Text;
 
 namespace SmartGridCisApp
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        List<Person> GetPersons();
 
         [OperationContract]
-        string GetData(int value);
+        int CreatePerson(string name, int age, int type);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        bool DeletePerson(int id);
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        bool UpdatePerson(int id, string name, int age, int type);
+
+        [OperationContract]
+        //Dictionary<int, string> GetPersonTypes();
+        List<PersonType> GetPersonTypes();
     }
 
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
-    public class CompositeType
+    public class Person
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        [DataMember]
+        public int Id { get; set; }
 
         [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
+        public string Name { get; set; }
 
         [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        public int Age { get; set; }
+
+        [DataMember]
+        public int Type { get; set; }
+    }
+
+    [DataContract]
+    public class PersonType
+    {
+        [DataMember]
+        public int Type { get; set; }
+
+        [DataMember]
+        public string Description { get; set; }
     }
 }
