@@ -12,7 +12,7 @@ namespace WebApplication
     {
         public static IList<string> GenerateRandomDates(DateTime dateFrom, DateTime dateTo, int number)
         {
-            var randomDateList = new List<string>();
+            var randomDateList = new List<string>(); 
             var random = new Random();
            
             var range = dateTo - dateFrom;
